@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Axolotlkit by WhisperSystems</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Axolotlkit</h1>
+      <h2 class="project-tagline">AxolotlKit is an implementation of the Axolotl encryption protocol, written in Objective-C.</h2>
+      <a href="https://github.com/WhisperSystems/AxolotlKit" class="btn">View on GitHub</a>
+      <a href="https://github.com/WhisperSystems/AxolotlKit/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/WhisperSystems/AxolotlKit/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="axolotlkit-" class="anchor" href="#axolotlkit-" aria-hidden="true"><span class="octicon octicon-link"></span></a>AxolotlKit <a href="https://travis-ci.org/WhisperSystems/AxolotlKit"><img src="https://travis-ci.org/WhisperSystems/AxolotlKit.svg?branch=master" alt="Build Status"></a>
+</h1>
+
+<p>AxolotlKit is a free (as in Freedom) implementation of the Axolotl protocol, written in Objective-C.</p>
+
+<p><img src="http://cl.ly/WYR4/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f373635392f323131353834382f36303637346365322d393035632d313165332d396233622d6634663830613766363533342e706e67.png" alt="AxolotlKit"></p>
+
+<h3>
+<a id="status" class="anchor" href="#status" aria-hidden="true"><span class="octicon octicon-link"></span></a>Status</h3>
+
+<p>Axolotl is currently being reviewed. All scrutiny welcome. Once ready, it will be distributed via CocoaPods. </p>
+
+<h2>
+<a id="goal" class="anchor" href="#goal" aria-hidden="true"><span class="octicon octicon-link"></span></a>Goal</h2>
+
+<p>AxolotlKit was designed to be a drop-in library that can be easily integrated into existing projects. </p>
+
+<p>Axolotl is an <a href="https://github.com/trevp/axolotl/wiki">asynchronous cryptographic ratcheting protocol</a> <a href="https://github.com/WhisperSystems/TextSecure/wiki/ProtocolV2">with interesting properties</a>.</p>
+
+<h2>
+<a id="integration" class="anchor" href="#integration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Integration</h2>
+
+<p>AxolotlKit was designed with enough abstraction to integrate it easily into your own project. Please refer to the documentation or the TextSecure example to properly implement the required Objective-C storage protocols. </p>
+
+<p>Unlike OTR, Axolotl is designed for long-lived sessions, keys need to be stored. AxolotlKit defines interfaces of the storage classes (<code>IdentityKeyStore.h</code>, <code>PreKeyStore.h</code>, <code>SessionStore.h</code> and <code>SignedPreKeyStore.h</code>). AxolotlKit objects do comply to <code>NSSecureCoding</code> so serialization of objects for the database is provided for you.</p>
+
+<h3>
+<a id="prekeys" class="anchor" href="#prekeys" aria-hidden="true"><span class="octicon octicon-link"></span></a>Prekeys</h3>
+
+<p>A concept of <em>PreKeys</em> are used to achieve asynchronous perfect forward secrecy. PreKeys are composed of a Curve25519 public key and a unique ID, both stored by the server.</p>
+
+<p>At install time, clients generate a single signed PreKey as well as a large list of unsigned PreKeys and transmit those to the server. </p>
+
+<h3>
+<a id="sessions" class="anchor" href="#sessions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Sessions</h3>
+
+<p>The Axolotl protocol is session-oriented.  Clients establish a "session," which is then used for all subsequent encrypt/decrypt operations.  There is no need to ever tear down a session once one has been established.</p>
+
+<p>Sessions are established in one of these ways:</p>
+
+<ul>
+<li><p>PreKeyBundles. A client that wishes to send a message to a recipient can establish a session by retrieving a PreKeyBundle for that recipient from the server.</p></li>
+<li><p>PreKeyWhisperMessages. A client can receive a PreKeyWhisperMessage from a recipient and use it to establish a session.</p></li>
+</ul>
+
+<h3>
+<a id="state" class="anchor" href="#state" aria-hidden="true"><span class="octicon octicon-link"></span></a>State</h3>
+
+<p>An established session encapsulates a lot of state between two clients.  That state is maintained in durable records which need to be kept for the life of the session.</p>
+
+<p>State is kept in the following places:</p>
+
+<ul>
+<li><p>Identity State.  Clients will need to maintain the state of their own identity key pair, as well as identity public keys received from other clients.</p></li>
+<li><p>PreKey State. Clients will need to maintain the state of their generated (private) PreKeys.</p></li>
+<li><p>Signed PreKey States. Clients will need to maintain the state of the their signed (private) PreKeys.</p></li>
+<li><p>Session State.  Clients will need to maintain the state of the sessions they have established.</p></li>
+</ul>
+
+<h2>
+<a id="faq" class="anchor" href="#faq" aria-hidden="true"><span class="octicon octicon-link"></span></a>FAQ</h2>
+
+<h3>
+<a id="q-will-you-release-a-swift-implementation-of-axolotlkit-too" class="anchor" href="#q-will-you-release-a-swift-implementation-of-axolotlkit-too" aria-hidden="true"><span class="octicon octicon-link"></span></a>Q: Will you release a Swift implementation of AxolotlKit too?</h3>
+
+<p>A: If Swift ends up being a good language for cryptographic applications, that will be considered. It’s still too early to make that call now. </p>
+
+<h2>
+<a id="credit" class="anchor" href="#credit" aria-hidden="true"><span class="octicon octicon-link"></span></a>Credit</h2>
+
+<p>Thanks to Trevor Perrin and Moxie Marlinspike for the amazing work on the Axolotl protocol and original implementation. Thanks to <a href="http://www.conorheelan.com/">Conor Heelan</a> for the Axolotl illustration.</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/WhisperSystems/AxolotlKit">Axolotlkit</a> is maintained by <a href="https://github.com/WhisperSystems">WhisperSystems</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
+
