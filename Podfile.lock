@@ -1,16 +1,27 @@
 PODS:
-  - 25519 (2.0.1)
+  - Curve25519 (2.0.2)
   - HKDFKit (0.0.3)
   - ProtocolBuffers (1.9.7)
 
 DEPENDENCIES:
-  - 25519 (~> 2.0.1)
+  - Curve25519 (from `/Users/houxh/workspace/Curve25519`)
   - HKDFKit (~> 0.0.3)
   - ProtocolBuffers (~> 1.9.7)
 
+SPEC REPOS:
+  trunk:
+    - HKDFKit
+    - ProtocolBuffers
+
+EXTERNAL SOURCES:
+  Curve25519:
+    :path: "/Users/houxh/workspace/Curve25519"
+
 SPEC CHECKSUMS:
-  '25519': cd3f6f0658ac9dd4f95d7fb906378e1d0649c46c
+  Curve25519: b7b092bb137a379bcc0943e17538fa5065137229
   HKDFKit: c058305d6f64b84f28c50bd7aa89574625bcb62a
   ProtocolBuffers: 0682a66dec85e5a45bd53a2f44b8b987a0ba845f
 
-COCOAPODS: 0.37.2
+PODFILE CHECKSUM: ef313510c96e3e9735f0b7d814e016b2081e295c
+
+COCOAPODS: 1.8.4

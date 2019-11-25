@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 
-#import <25519/Curve25519.h>
+#import <Curve25519/Curve25519.h>
 #import "AxolotlInMemoryStore.h"
 #import "AliceAxolotlParameters.h"
 #import "BobAxolotlParameters.h"

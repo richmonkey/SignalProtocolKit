@@ -9,7 +9,7 @@
 #import <XCTest/XCTest.h>
 
 #import "PreKeyBundle.h"
-#import <25519/Curve25519.h>
+#import <Curve25519/Curve25519.h>
 
 @interface PreKeyBundleTests : XCTestCase
 

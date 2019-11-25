@@ -12,7 +12,7 @@
 #import "SessionCipher.h"
 #import "AxolotlExceptions.h"
 
-#import <25519/Ed25519.h>
+#import <Curve25519/Ed25519.h>
 
 
 @interface PreKeyWhisperMessage ()
